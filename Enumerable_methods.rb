@@ -14,4 +14,12 @@ module Enumerable
 		end
 	end
 
+	def my_select
+		result = []
+		for i in self
+			yield(i) ? result.push(i) : i
+		end
+		return result
+	end
+
 end
