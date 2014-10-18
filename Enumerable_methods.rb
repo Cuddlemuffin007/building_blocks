@@ -1,12 +1,17 @@
 module Enumerable
 
 	def my_each
-      i = 0
-      while i < self.length do
-      	yield self[i]
-      	i += 1
-      end
-	  return self
+		return self unless block_given?
+		for i in self
+			yield(i)
+		end
+	end
+		
+	def my_each_with_index
+		return self unless block_given?
+		for i in 0...length
+			yield self[i], i
+		end
 	end
 
 end
