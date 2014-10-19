@@ -60,6 +60,13 @@ module Enumerable
 			my_each{ |i| count += 1 if i == arg}
 		end
 		count
+	end
+
+	def my_map
+		return self unless block_given?
+		mapped = []
+		my_each{ |i| mapped << yield(i)}
+		mapped	
 	end			
 
 end
