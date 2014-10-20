@@ -62,11 +62,21 @@ module Enumerable
 		count
 	end
 
-	def my_map
+	def my_map(&block)
 		return self unless block_given?
 		mapped = []
-		my_each{ |i| mapped << yield(i)}
+		my_each{ |i| mapped << block.call(i)}
 		mapped	
-	end			
+	end	
+
+	def my_inject(num = nil)
+		accumulator = num.nil? ? first : num
+		my_each { |i| accumulator = yield(accumulator, i) }
+		accumulator
+	end
+
+	def multiply_els array
+		array.my_inject{ |product, n| product * n}
+	end
 
 end
